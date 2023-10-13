@@ -1,0 +1,128 @@
+<div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>New Product</b></h4>
+            </div>
+            <div class="col-sm-6">
+              <a href="#" routerLink="/Home" class="btn btn-success back"><i class='fas fa-arrow-circle-left'></i>
+                 Back</a>
+            </div>
+          </div>
+        </div>
+        <form #productForm="ngForm">
+          <div class="table-content">
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="ProductName" class="p-t-b-10">ProductName<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="ProductName" required maxlength="255"
+                  [(ngModel)]="addProductForm.productName" name="ProductName" #ProductName="ngModel">
+                <div *ngIf="ProductName.errors && isSubmitted" class="alert alert-danger validationError">
+                  <div [hidden]="!ProductName.errors?.['required']">
+                    ProductName Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label for="ProductOwnerName" class="p-t-b-10">ProductOwnerName<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="ProductOwnerName" required maxlength="255"
+                  [(ngModel)]="addProductForm.productOwnerName" name="ProductOwnerName" #ProductOwnerName="ngModel">
+                <div *ngIf="ProductOwnerName.errors && isSubmitted" class="alert alert-danger validationError">
+                  <div [hidden]="!ProductOwnerName.errors?.['required']">
+                    ProductOwnerName is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group p-10 row">
+                <div class="col-sm-3">
+                  <label for="Developers" class="p-t-b-10">Developers<span class="requiredStar">*</span></label>
+                </div>
+                <div class="col-sm-9">
+
+
+                
+                <input  class="form-control" #newDev (keyup.enter)="addDeveloper(newDev.value)" (blur)="addDeveloper(newDev.value); newDev.value='' ">
+                <button type="button" (click)="addDeveloper(newDev.value)">Add</button>
+                <ul><li *ngFor="let dev of addProductForm.developers">{{dev}}</li></ul>
+                
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">ScrumMasterName<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="ScrumMasterName" required maxlength="255"
+                  [(ngModel)]="addProductForm.scrumMasterName" name="ScrumMasterName" #ScrumMasterName="ngModel">
+                <div *ngIf="ScrumMasterName.errors && isSubmitted" class="alert alert-danger validationError">
+                  <div [hidden]="!ScrumMasterName.errors?.['required']">
+                    ScrumMasterName is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+                <div class="col-sm-3">
+                  <label for="startDate" class="p-t-b-10">Start Date<span class="requiredStar">*</span></label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="startDate" required maxlength="255" pattern="^\d{2}\-\d{2}\-\d{4}$"
+                    [(ngModel)]="addProductForm.startDate" name="startDate" #startDate="ngModel">
+                  <div *ngIf="startDate.errors && isSubmitted" class="alert alert-danger validationError">
+                    <div [hidden]="!startDate.errors?.['required']">
+                        Start Date is required
+                    </div>  
+                    <div [hidden]="!startDate.errors?.['touched'] && !startDate.errors?.['pattern']">
+                        Start Date format is invalid . Right format : dd-mm-yyyy example : 06-10-2012
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="form-group p-10 row">
+              <div class="col-sm-3">
+                <label class="p-t-b-10">Methodology<span class="requiredStar">*</span></label>
+              </div>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="Methodology" required [(ngModel)]="addProductForm.methodology" name="Methodology"
+                  #Methodology="ngModel">></textarea>
+                <div *ngIf="Methodology.errors && isSubmitted" class="alert alert-danger validationError">
+                  <div [hidden]="!Methodology.errors?.['required']">
+                    Methodology is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group p-10 row">
+                <div class="col-sm-3">
+                  <label for="location" class="p-t-b-10">Location<span class="requiredStar">*</span></label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="location" required maxlength="255"
+                    [(ngModel)]="addProductForm.location" name="location" #location="ngModel">
+                  <div *ngIf="location.errors && isSubmitted" class="alert alert-danger validationError">
+                    <div [hidden]="!location.errors?.['required']">
+                      Location is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+          <div class="table-footer">
+            <button class="btn btn-success" (click)="AddProduct(productForm.form.valid)">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

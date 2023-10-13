@@ -1,0 +1,52 @@
+<div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Manage Product</b></h4>
+            </div>
+            <div class="col-sm-6">
+              <button class="btn btn-success" (click)="AddProduct()">
+                <i class='fas fa-plus-circle'></i><span> ADD</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered table-content">
+          <thead>
+            <tr class="center-align">
+              <th>ProductId</th>
+              <th>ProductName</th>
+              <th>ProductOwnerName</th>
+              <th>Developers</th>
+              <th>ScrumMasterName</th>
+              <th>StartDate</th>
+              <th>Methodology</th>
+              <th>Location</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of productList" class="center-align">
+              <td>{{ product.productId }}</td>
+              <td>{{ product.productName }}</td>
+              <td>{{ product.productOwnerName }}</td>
+              <td>{{ product.developers }}</td>
+              <td>{{ product.scrumMasterName }}</td>
+              <td>{{ product.startDate }}</td>
+              <td>{{ product.methodology }}</td>
+              <td>{{ product.location }}</td>
+              <td>
+                <a href="#" [routerLink]="['/EditProduct/', product.productId]" ><i class="fa fa-edit edit"></i>Edit</a>
+                <button type="button" (click)="deleteProductConfirmation(product)" class="btn"><i class='fas fa-trash-alt delete'></i>Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td *ngIf="productList.length == 0" colspan="6">No Product Found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
